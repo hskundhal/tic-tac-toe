@@ -69,7 +69,7 @@ export class BoardComponent implements OnInit {
   }
 
   placehere(): any {
-//   debugger;
+  debugger;
     const availableSquares = this.board;
     for (const pattern of this.winningIndexes) {
       const expected1 = this.board[pattern[0]].value === this.PLAYER_HUMAN.symbol ;
@@ -98,16 +98,26 @@ export class BoardComponent implements OnInit {
       const opponent2 = this.board[pattern[1]].value === this.PLAYER_COMPUTER.symbol ;
       const expected3 = this.board[pattern[2]].value === this.PLAYER_HUMAN.symbol ;
       const opponent3 = this.board[pattern[2]].value === this.PLAYER_COMPUTER.symbol ;
+      const center = this.board[4].value === this.PLAYER_COMPUTER.symbol ;
+      const centerhuman = this.board[4].value === this.PLAYER_HUMAN.symbol ;
 
-      if (expected1 &&  !expected2 && !expected3 && !opponent3) {
-        const squareIndex = pattern[2];
+      if (expected1 &&  !expected2 && !expected3 && !opponent3 && !center && !centerhuman) {
+        const squareIndex = 4;
         return availableSquares[squareIndex];
+      }
+      if (expected1 &&  !expected2 && !expected3 && !opponent3 && !opponent2) {
+        const squareIndex = pattern[1];
+        return availableSquares[squareIndex];
+      }
+      if (expected1 &&  !expected2 && !expected3 && !opponent3) {
+          const squareIndex = pattern[2];
+          return availableSquares[squareIndex];
       }
       if (expected2 &&  !expected3 && !expected1 && !opponent1) {
         const squareIndex = pattern[0];
         return availableSquares[squareIndex];
       }
-      if (expected1 &&  !expected3 && !expected2 && !opponent3) {
+      if (expected3 &&  !expected3 && !expected2 && !opponent3) {
         const squareIndex = pattern[2];
         return availableSquares[squareIndex];
       }
