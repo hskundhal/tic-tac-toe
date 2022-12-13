@@ -69,6 +69,7 @@ export class BoardComponent implements OnInit {
   }
 
   placehere(): any {
+//   debugger;
     const availableSquares = this.board;
     for (const pattern of this.winningIndexes) {
       const expected1 = this.board[pattern[0]].value === this.PLAYER_HUMAN.symbol ;
@@ -142,12 +143,12 @@ export class BoardComponent implements OnInit {
   get winningIndexes(): any[] {
     return [
       [0, 1, 2],  //top row
+      [0, 4, 8],  //first diagonal
       [3, 4, 5],  //middle row
       [6, 7, 8],  //bottom row
       [0, 3, 6],  //first col
       [1, 4, 7],  //second col
       [2, 5, 8],  //third col
-      [0, 4, 8],  //first diagonal
       [2, 4, 6]   //second diagonal
     ];
   }
